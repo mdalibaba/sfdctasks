@@ -2,31 +2,34 @@ import { LightningElement,track } from 'lwc';
 import serachAccs from '@salesforce/apex/AccountSearch.retriveAccs';
 
 const columns = [
+     
      {
         label: 'Phone',
         fieldName: 'Phone',
         type: 'phone',
     }, 
 ];
-
-export default class GetAccountNumbers extends LightningElement {
+export default class AccountList extends LightningElement {
 
     keyIndex=0;
 
     @track accountList = [{
-        id:0
+        
+        AccountName:''
 
     }];
 
-    searchData;
+    searchData ;
+    
     columns = columns;
     errorMsg = '';
-    strSearchAccName = '';
+    //strSearchAccName = '';
     
     addRow() {
+
+        
         this.accountList.push(JSON.parse(JSON.stringify(this.accountList)));
-        this.searchData='';
-        this.strSearchAccName='';
+       
 
        // ++this.keyIndex;
        // var newItem = [{ id: this.keyIndex }];
@@ -41,20 +44,27 @@ export default class GetAccountNumbers extends LightningElement {
     }
 
     handleAccountName(event) {
+    
         this.errorMsg = '';
-        this.strSearchAccName = event.currentTarget.value;
+        
+        this.accountList.AccountName = event.currentTarget.value;
+        
     }
 
     handleSearch() {
-        if(!this.strSearchAccName) {
+        
+      
+        
+        if(!this.accountList.AccountName) {
             this.errorMsg = 'Please enter account name to search.';
             this.searchData = undefined;
             return;
         }
 
-        serachAccs({strAccName : this.strSearchAccName})
+        serachAccs({strAccName : this.accountList.AccountName})
         .then(result => {
-            this.searchData = result;
+           this.searchData=result;
+            
         })
         .catch(error => {
             this.searchData = undefined;
@@ -67,4 +77,5 @@ export default class GetAccountNumbers extends LightningElement {
             }
         }) 
     }
+    
 }

@@ -1,0 +1,30 @@
+<template>
+	<div class="slds-card border-mod">
+		<div if:true={errorMsg} style="margin-left: 3%;">
+			<p style="color: red;">{errorMsg}</p>
+		</div>
+
+		<template for:each={accountList} for:item="v" for:index="index">
+			<div class="slds-card__body" key={v.key} id={v.key}>
+				<div class="slds-grid">
+				<lightning-input type="text" variant="standard" name="AccountName" value={v.AccountName}
+					label="AcccountName" onchange={handleAccountName}  placeholder="Enter Account Name"> data-index={index}
+				</lightning-input>
+				<lightning-button label="Search" variant="brand" onclick={handleSearch}></lightning-button>
+
+				<div if:true={searchData}>
+					<lightning-datatable data={searchData} columns={columns} key-field="id" hide-checkbox-column="true">
+					</lightning-datatable>
+				</div>
+				</div>
+			</div>
+
+
+		</template>
+		<!-- Add Row Button -->
+		<lightning-button variant="neutral" label="Add Row" onclick={addRow} class="margin-left">
+		</lightning-button>
+	</div>
+
+
+</template>

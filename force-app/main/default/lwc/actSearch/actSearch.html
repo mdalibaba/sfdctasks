@@ -1,0 +1,46 @@
+<template>
+
+    <div class="slds-card" style="font-family: 'Open Sans', sans-serif">
+
+        <!-- Header -->
+        <header class="slds-card__header slds-media slds-media_center">
+            <div class="slds-media__figure">
+                <lightning-icon icon-name="standard:account" size="small"></lightning-icon>
+            </div>
+            <div class="slds-media__body slds-card__header-title slds-text-title_bold" style="font-size: 14px">
+                Account Search
+            </div>
+        </header>
+
+        <!-- Table -->
+        <table class="slds-table slds-table_bordered slds-no-row-hover slds-table_cell-buffer" role="grid">
+            
+            <tbody>
+                <template for:each={listOfAccounts} for:item="rec">
+                    <tr key={rec} class="slds-hint-parent">
+                        <td style="font-weight: bold">
+                            <lightning-formatted-number value={rec.index}></lightning-formatted-number>.
+                        </td>
+
+                        
+                        <td>
+                            <c-search-account></c-search-account>
+                        </td>
+                        <td>
+                            <lightning-button-icon icon-name="utility:delete" alternative-text="Remove" title="Remove"
+                                name={rec.index} onclick={removeRow}></lightning-button-icon>
+                        </td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+        <div class="slds-p-left_small slds-p-vertical_small">
+            
+            <lightning-button variant="neutral" label="Add row" title="add row"
+                icon-name="utility:add" onclick={addNewRow}></lightning-button>
+        </div>
+
+        
+    </div>
+
+</template>

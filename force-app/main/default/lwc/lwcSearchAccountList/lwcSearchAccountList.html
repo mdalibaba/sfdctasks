@@ -1,0 +1,36 @@
+<template>
+	<lightning-card>
+		
+		<div class="slds-grid slds-gutters">
+			<div class="slds-col">
+				<p class="slds-p-horizontal_small">
+			<lightning-input type="search" class="slds-m-bottom_small" label="Search Account Name"
+				onchange={searchAccountAction} value={accountName}></lightning-input>
+		</p>
+			</div>
+			<div class="slds-col">
+				<div class="slds-p-around--medium">
+			<table border="1" bordercolor="#ddd" cellpadding="5" cellspacing="0" style="border-collapse:collapse;"
+				class="lwsTablePad">
+				<tr>
+					<th>Name</th>
+					<th>Phone</th>
+
+				</tr>
+				<template for:each={accountList} for:item="accObj" for:index="index">
+					<tr class="slds-hint-parent" key={accObj.Id}>
+						<td>{accObj.Name}</td>
+						<td>{accObj.Phone}</td>
+					</tr>
+				</template>
+			</table>
+		</div>
+			</div>
+		</div>
+
+		
+		
+
+
+	</lightning-card>
+</template>
