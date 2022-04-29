@@ -1,0 +1,65 @@
+<template>
+
+	<template for:each={bookList} for:item="v" for:index="index">
+		<div class="slds-card__body" key={v.key} id={v.key}>
+
+
+
+			<lightning-record-edit-form object-api-name="Book__c" record-id={recordId}>
+				<div class="slds-grid slds-gutters">
+					<div class="slds-col">
+						<lightning-input-field field-name="Student_Name__c" data-index={index} value={v.name}
+					onchange={handleName} name="name"> </lightning-input-field>
+					</div>
+					<div class="slds-col">
+						<lightning-input-field field-name="Name" onchange={handleBookName} data-index={index} value={v.bookName}
+					name="bookName"> </lightning-input-field>
+					</div>
+					<div class="slds-col">
+						<lightning-input-field field-name="Institution_Name__c" onchange={handleInstitutionName} data-index={index}
+					value={v.institutionName} name="institutionName"></lightning-input-field>
+					</div>
+					<div class="slds-col">
+						<lightning-input-field field-name="subject__c" onchange={handleSubject} data-index={index}
+					value={v.subject} name="subject"> </lightning-input-field>
+					</div>
+					<div class="slds-col">
+						<lightning-button-icon icon-name="utility:delete" size="medium" class="btnDelete"
+					variant="border-filled" data-index={index} alternative-text="Delete" onclick={deleteRow}>
+				</lightning-button-icon>
+					</div>
+				</div>
+				
+				
+				
+				
+				
+
+				
+
+			</lightning-record-edit-form>
+
+		</div>
+	</template>
+	<!-- Add Row Button -->
+	<lightning-button variant="neutral" label="Add Row" onclick={addRow} class="margin-left">
+	</lightning-button>
+
+	<!-- Save Button -->
+	<footer class="slds-modal__footer margin-top slds-align_absolute-center">
+
+
+		<lightning-button variant="brand" name="save" class="slds-float_left" label="Save" onclick={handleSave}>
+		</lightning-button>
+
+		<lightning-button variant="brand" name="cancel" class="slds-float_right" label="Cancel" type="cancel"
+			onclick={handleCancel}>
+		</lightning-button>
+
+
+	</footer>
+
+
+
+
+</template>
