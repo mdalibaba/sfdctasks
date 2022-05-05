@@ -1,0 +1,35 @@
+<template>
+	<div class="slds-card border-mod">
+	<lightning-card variant="Narrow" title="Book" icon-name="standard:account">
+		<div if:true={errorMsg} style="margin-left: 3%;">
+			<p style="color: red;">{errorMsg}</p>
+		</div>
+		<div class="slds-grid slds-gutters">
+			<div class="slds-col">
+				<lightning-record-edit-form object-api-name="student__c" record-id={recordId}>
+					<lightning-messages> </lightning-messages>
+					<lightning-input-field field-name="Books__c"  label="Enter Book Name" onchange={handleBookName}>
+					</lightning-input-field>
+				</lightning-record-edit-form>
+			</div>
+			<div class="slds-col">
+				<lightning-layout-item size="12" small-device-size="2" medium-device-size="2" large-device-size="2">
+					<lightning-button label="Search" variant="brand" onclick={handleSearch}></lightning-button>
+				</lightning-layout-item>
+			</div>
+			<div class="slds-col">
+				<div if:true={searchData}>
+					<lightning-datatable onsave={handleSave}
+                    draft-values={draftValues} data={searchData} columns={columns} key-field="id" hide-checkbox-column="true">
+					</lightning-datatable>
+					
+				</div>
+			</div>
+
+		</div>
+
+
+		</lightning-card>
+	</div>
+
+</template>
