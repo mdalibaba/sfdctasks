@@ -1,0 +1,35 @@
+<template>
+<lightning-card>
+    <lightning-record-edit-form
+    object-api-name="TimeOff_Request__c"
+    record-id={recordId}
+>
+<div class="slds-grid slds-gutters">
+    <div class="slds-col">
+        <lightning-input-field field-name="Name" name="name" onchange={handleName} value={name}> </lightning-input-field>
+    </div>
+    <div class="slds-col">
+        <lightning-input-field field-name="Start_Date__c" name="startdate" onchange={handleDateChange} value={start_date}> </lightning-input-field>
+    </div>
+    <div class="slds-col">
+        <lightning-input-field field-name="End_Date__c" name="enddate" onchange={handleDateChange} value={end_date}> </lightning-input-field>
+    </div>
+    <div class="slds-col">
+        <div class="slds-col slds-m-left_large">
+            <div class="slds-text-color_error slds-p-top_medium">No Of Days Selected : {range}</div>
+        </div>
+    </div>
+    <div class="slds-col">
+        <div class="slds-var-m-top_medium">
+            <lightning-button variant="brand" type="submit" onclick={handleSave} label="Save">
+            </lightning-button>
+        </div>
+    </div>
+    
+    </div>
+    
+    
+    
+</lightning-record-edit-form>
+</lightning-card>
+</template>

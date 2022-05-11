@@ -2,9 +2,9 @@ import { LightningElement, api, wire } from 'lwc';
 import getBooks from '@salesforce/apex/bookController.getBooks';
 import { refreshApex } from '@salesforce/apex';
 import { updateRecord } from 'lightning/uiRecordApi';
-//import DESCRIPTION_FIELD from '@salesforce/schema/Book__c.Description__c';
-//import BOOKTYPE_FIELD from '@salesforce/schema/Book__c.Booktype__c';
-import ID_FIELD from '@salesforce/schema/Book__c.Id';
+import DESCRIPTION_FIELD from '@salesforce/schema/Book__c.Description__c';
+import BOOKTYPE_FIELD from '@salesforce/schema/Book__c.Booktype__c';
+import ID_FIELD from '@salesforce/schema/Book__c.id';
 
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import searchBook from '@salesforce/apex/bookSearch.retriveBook';
@@ -13,7 +13,13 @@ import searchBook from '@salesforce/apex/bookSearch.retriveBook';
 
 
 const columns = [
-     {
+    {
+        label: 'ID',
+        fieldName: 'id',
+        type: 'Id',
+        
+    }, 
+    {
         label: 'Description',
         fieldName: 'Description__c',
         type: 'text',
@@ -24,7 +30,8 @@ const columns = [
         fieldName: 'Booktype__c',
         type: 'text',
         editable: true
-    }, 
+    },
+
 ];
 
 export default class SelectBook extends LightningElement {
@@ -50,6 +57,8 @@ export default class SelectBook extends LightningElement {
         fields[BOOKTYPE_FIELD.fieldApiName] = event.detail.draftValues[0].Booktype__c;
 
         const recordInput = {fields};
+        console.log('fields:', fields);
+        alert('1');
 
         updateRecord(recordInput)
         .then(() => {
